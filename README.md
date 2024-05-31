@@ -66,6 +66,10 @@ npm start
 ```
 
 
-Remote Shell commands used in jenkins : docker build . -t nodejsapp1
-                                 docker run -d --name nodejsapp1 -p 4000:4000 nodejsapp1
+Remote Shell commands used in jenkins : 
+
+```bash
+docker build . -t nodejsapp1
+docker run -d --name nodejsapp1 -p 4000:4000 nodejsapp1
+```
 
