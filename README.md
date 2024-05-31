@@ -65,3 +65,7 @@ To start the application, run the below command in the terminal:
 npm start
 ```
 
+
+Remote Shell commands used in jenkins : docker build . -t nodejsapp1
+                                 docker run -d --name nodejsapp1 -p 4000:4000 nodejsapp1
+
