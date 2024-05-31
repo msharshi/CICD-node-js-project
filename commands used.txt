@@ -1,0 +1,83 @@
+    1  cat /etc/os-release
+    2  apt update -y && apt upgrade -y
+    3  apt dist-upgrade -y
+    4  apt update -y python3-update-manager update-manager-core
+    5  apt update python3-update-manager update-manager-core
+    6  apt install -y python3-update-manager update-manager-core
+    7  init 6
+    8  apt install fontconfig openjdk-17-jre -y
+    9  java -version
+   10  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+   11  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+   12  apt-get update -y
+   13  apt-get install jenkins -y
+   14  systemctl enable jenkins
+   15  systemctl start  jenkins
+   16  systemctl status jenkins
+   17  history
+   18  cat /var/lib/jenkins/secrets/initialAdminPassword
+   19  exit
+   20  cd /var/lib/jenkins/workspace/jenkins-pipeline-01
+   21  ls
+   22  cd
+   23  id ubuntu
+   24  visudo
+   25  sudo service jenkins restart
+   26  systemctl status jenkins
+   27  history
+   28  exit
+   29  history
+   30  usermod -aG jenkins ubuntu
+   31  id ubuntu
+   32  visudo
+   33  cat /etc/group | grep jenkins
+   34  sudo apt-get update
+   35  sudo apt-get install ca-certificates curl
+   36  sudo install -m 0755 -d /etc/apt/keyrings
+   37  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+   38  sudo chmod a+r /etc/apt/keyrings/docker.asc
+   39  # Add the repository to Apt sources:
+   40  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   41    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   42  sudo apt-get update
+   43  apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+   44  systemctl enable docker
+   45  systemctl start docker
+   46  systemctl status docker
+   47  usermod -aG docker ubuntu
+   48  init 6
+   49  apt install -y npm
+   50  usermod -aG docker jenkins
+   51  usermod -aG jenkins $USER
+   52  systemctl restart jenkins
+   53  systemctl status jenkins
+   54  history
+
+
+Note:  To set hostname:  sudo hostnamectl set-hostname (newname)
+       To verify      :  /bin/bash
+
+
+SONARQUBE installation :  search in google download sonarqube then copy the link address of the community edition.
+                          then #wget (paste the link)
+                               #sudo apt install unzip
+                               #unzip (paste the wget downloaded link)
+    after extracting the files #cd sonarqube-10.5.1.90531
+                               #cd bin
+                               #cd linux
+    inside linux foder you will find a sonar bash file so execute it with command
+                               #./sonar.sh console
+Note: sonarqube runs on port 9000 so make sure port 9000 is added in the inbound rules)
+
+Sonarqube configuration with jenkins : -- install sonarqube scanner plugin in jenkins and also ssh2 easy plugin
+
+
+For docker ps without sudo : 
+#sudo usermod -aG docker ubuntu
+#newgrp docker 
+
+Remote Shell commands used in jenkins :
+
+docker build . -t nodejsapp1
+docker run -d --name nodejsapp1 -p 4000:4000 nodejsapp1
+
